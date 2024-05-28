@@ -202,6 +202,7 @@ bar {
 # Gaps and stuff
 gaps inner 3
 smart_borders on
+default_border pixel 0
 
 # Windowz and stuff
 for_window [class="Xfce4-notifyd"] border pixel 0
