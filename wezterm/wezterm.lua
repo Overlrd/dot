@@ -12,7 +12,7 @@ c.font = wezterm.font_with_fallback({
 c.window_padding = {
 	left = 2,
 	right = 2,
-	top = 10,
+	top = 1,
 	bottom = 0,
 }
 

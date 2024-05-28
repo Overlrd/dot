@@ -4,7 +4,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- file tree
-vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
+vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { silent = true })
 
 -- move lines
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -33,9 +33,9 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
-        desc = "Highlight when yanking (copying) text",
-        group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-        callback = function()
-                vim.highlight.on_yank()
-        end,
+	desc = "Highlight when yanking (copying) text",
+	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+	callback = function()
+		vim.highlight.on_yank()
+	end,
 })
