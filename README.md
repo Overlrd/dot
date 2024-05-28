@@ -1,2 +1,2 @@
 # dotfiles
-![screenshot](./config.png) 
+![screenshot](./screenshot.png) 
