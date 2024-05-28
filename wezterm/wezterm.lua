@@ -1,21 +1,18 @@
 local wezterm = require("wezterm")
-local theme = require("lua/rose-pine").main
+local config = wezterm.config_builder()
 
-local c = {}
-if wezterm.config_builder then
-	c = wezterm.config_builder()
-	c:set_strict_mode(true)
-end
+config.color_scheme = "rose-pine"
+config.window_background_opacity = 1
 
--- COLORS
-c.use_fancy_tab_bar = false
-c.show_new_tab_button_in_tab_bar = false
-c.color_scheme = "rose-pine"
+config.font = wezterm.font_with_fallback({
+	{ family = "Iosevka Nerd Font", scale = 1.2, weight = "Medium" },
+})
 
-c.window_padding = {
+config.window_padding = {
 	left = 2,
 	right = 2,
 	top = 0,
 	bottom = 0,
 }
-return c
+
+return config
