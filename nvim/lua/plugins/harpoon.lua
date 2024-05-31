@@ -18,19 +18,19 @@ return {
 
 		vim.keymap.set("n", "<leader>&", function()
 			harpoon:list():select(1)
-		end, { desc = "Harpoon -> 1" })
+		end, { desc = "Harpoon file 1" })
 
 		vim.keymap.set("n", "<leader>é", function()
 			harpoon:list():select(2)
-		end, { desc = "Harpoon -> 2" })
+		end, { desc = "Harpoon file 2" })
 
 		vim.keymap.set("n", '<leader>"', function()
 			harpoon:list():select(3)
-		end, { desc = "Harpoon -> 3" })
+		end, { desc = "Harpoon file 3" })
 
 		vim.keymap.set("n", "<leader>'", function()
 			harpoon:list():select(4)
-		end, { desc = "Harpoon -> 4" })
+		end, { desc = "Harpoon file 4" })
 
 		-- Toggle previous & next buffers stored within Harpoon list
 		vim.keymap.set("n", "<C-PageUp>", function()

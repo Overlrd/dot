@@ -1,4 +1,6 @@
 local servers = {
+	-- c
+	-- clangd = {},
 	-- python
 	pyright = {},
 	black = {},

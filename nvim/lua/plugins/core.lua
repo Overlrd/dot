@@ -1,67 +1,18 @@
---[[
-  core.lua
-  plugins:
-    - nvim-tree
-    - harpoon2
-    - nvim-autopairs
-    - comment.nvim
-    - indent-blanckline.nvim
-    - vim-fugitive
-    - rose-pine
-    - todo-comments.nvim
-    - gitsigns.nvim
-    - telescope.nvim
-    - nvim-treesiter
-    - nvim-cmp
---]]
-
 return {
-	{ "echasnovski/mini.statusline", version = "*", opts = {} },
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = {},
+	},
+	{ "nmac427/guess-indent.nvim" },
+	{ "onsails/lspkind.nvim" },
+	{
+		"stevearc/dressing.nvim",
+		opts = {},
+	},
 	{ -- Useful plugin to show you pending keybinds.
 		"folke/which-key.nvim",
-		event = "VimEnter", -- Sets the loading event to 'VimEnter'
-		config = function() -- This is the function that runs, AFTER loading
-			require("which-key").setup()
-
-			-- Document existing key chains
-			require("which-key").register({
-				["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
-				["<leader>d"] = { name = "[D]ocument", _ = "which_key_ignore" },
-				["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
-				["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
-				["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
-				["<leader>t"] = { name = "[T]oggle", _ = "which_key_ignore" },
-				["<leader>h"] = { name = "Git [H]unk", _ = "which_key_ignore" },
-			})
-			-- visual mode
-			require("which-key").register({
-				["<leader>h"] = { "Git [H]unk" },
-			}, { mode = "v" })
-		end,
-	},
-	{
-		"nvim-tree/nvim-tree.lua",
-		version = "*",
-		lazy = false,
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-		},
-		config = function()
-			require("nvim-tree").setup({
-				sort = {
-					sorter = "case_sensitive",
-				},
-				view = {
-					width = 30,
-				},
-				renderer = {
-					group_empty = true,
-				},
-				filters = {
-					dotfiles = false,
-				},
-			})
-		end,
+		event = "VimEnter",
 	},
 	{
 		"windwp/nvim-autopairs",
@@ -70,37 +21,9 @@ return {
 	},
 	{
 		"numToStr/Comment.nvim",
-		opts = {
-			-- add any options here
-		},
+		opts = {},
 		lazy = false,
 	},
-	-- {
-	-- 	"lukas-reineke/indent-blankline.nvim",
-	-- 	opts = {
-	-- 		indent = {
-	-- 			char = "│",
-	-- 			tab_char = "│",
-	-- 		},
-	-- 		scope = { enabled = false },
-	-- 		exclude = {
-	-- 			filetypes = {
-	-- 				"help",
-	-- 				"alpha",
-	-- 				"dashboard",
-	-- 				"neo-tree",
-	-- 				"Trouble",
-	-- 				"trouble",
-	-- 				"lazy",
-	-- 				"mason",
-	-- 				"notify",
-	-- 				"toggleterm",
-	-- 				"lazyterm",
-	-- 			},
-	-- 		},
-	-- 	},
-	-- 	main = "ibl",
-	-- },
 
 	-- git wrapper
 	"tpope/vim-fugitive",
@@ -230,6 +153,8 @@ return {
 		},
 		config = function()
 			-- See `:help cmp`
+			local lspkind = require("lspkind")
+
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
 			luasnip.config.setup({})
@@ -280,6 +205,20 @@ return {
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
 					{ name = "path" },
+				},
+				formatting = {
+					format = lspkind.cmp_format({
+						mode = "symbol", -- show only symbol annotations
+						maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+						-- can also be a function to dynamically calculate max width such as
+						-- maxwidth = function() return math.floor(0.45 * vim.o.columns) end,
+						ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+						show_labelDetails = true, -- show labelDetails in menu. Disabled by default
+
+						before = function(entry, vim_item)
+							return vim_item
+						end,
+					}),
 				},
 			})
 		end,

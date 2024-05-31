@@ -188,8 +188,9 @@ bar {
         status_command i3status --transparency
 
         colors {
-            statusline #F8F8F2
+                statusline #F8F8F2
                 separator  #44475A
+                background #00000000
 
                 focused_workspace  #44475A #44475A #F8F8F2
                 active_workspace   #282A36 #44475A #F8F8F2
