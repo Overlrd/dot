@@ -1,28 +1,32 @@
 local wezterm = require("wezterm")
-local c = wezterm.config_builder()
+local config = wezterm.config_builder()
 local act = wezterm.action
 
-c.color_scheme = "rose-pine"
-c.window_background_opacity = 1
+local theme = require("lua/rose_pine").moon
 
-c.font = wezterm.font_with_fallback({
+config.use_dead_keys = false
+config.scrollback_lines = 5000
+config.hide_tab_bar_if_only_one_tab = true
+config.use_fancy_tab_bar = true
+
+config.color_scheme = "Tokyo Night Moon"
+config.window_frame = theme.window_frame()
+config.window_background_opacity = 1
+
+config.font = wezterm.font_with_fallback({
 	{ family = "Iosevka Nerd Font", scale = 1.2, weight = "Medium" },
 })
 
-c.window_padding = {
+config.window_padding = {
 	left = 2,
 	right = 2,
-	top = 1,
+	top = 6,
 	bottom = 0,
 }
 
-c.use_dead_keys = false
-c.scrollback_lines = 5000
-c.hide_tab_bar_if_only_one_tab = true
-
 -- Keys
-c.disable_default_key_bindings = false
-c.keys = {
+config.disable_default_key_bindings = false
+config.keys = {
 	{ key = "j", mods = "ALT", action = act.ActivatePaneDirection("Down") },
 	{ key = "k", mods = "ALT", action = act.ActivatePaneDirection("Up") },
 	{ key = "h", mods = "ALT", action = act.ActivatePaneDirection("Left") },
@@ -49,4 +53,4 @@ c.keys = {
 	},
 }
 
-return c
+return config

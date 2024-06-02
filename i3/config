@@ -185,14 +185,13 @@ client.background       #F8F8F2
 
 bar {
     font pango: Iosevka, FontAwesome 12
-
-    status_command i3status-rs $HOME/.config/i3status-rust/config.toml
+        position bottom
+        status_command i3status-rs $HOME/.config/i3status-rust/config.toml
 
         colors {
-                statusline #F8F8F2
-                separator  #44475A
+                separator  #666666
                 background #000000
-
+                statusline #dddddd                
                 focused_workspace  #44475A #44475A #F8F8F2
                 active_workspace   #282A36 #44475A #F8F8F2
                 inactive_workspace #282A36 #282A36 #BFBFBF
@@ -202,7 +201,8 @@ bar {
 }
 
 # Gaps and stuff
-gaps inner 3
+gaps inner 2
+gaps bottom 0
 smart_borders on
 default_border pixel 0
 
